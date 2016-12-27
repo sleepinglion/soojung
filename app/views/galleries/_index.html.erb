@@ -1,0 +1,23 @@
+<article id="sl_main_gallery" class="sl_main_list">
+	<h3><%=t('activerecord.models.gallery') %></h3>
+	<% unless @galleries.empty? %>	
+	<a class="prev browse left hidden-xs"></a>
+	<div class="scrollable">
+		<div class="items">
+			<% @galleries.each_slice(6) do |gallery| %>
+			<ul class="item">
+				<% gallery.each_with_index do |gallery,index| %>
+				<li><%=link_to image_tag(gallery.photo.small_thumb,:alt=>gallery.title),gallery_path(gallery),:title=>gallery.title %></li>
+				<% end %>
+			</ul>
+			<% end %>
+		</div>
+	</div>
+	<a class="next browse right hidden-xs"></a>
+	<% else %>
+	<div>
+		<p><%=t(:no_data) %></p>
+	</div>
+	<% end %>	
+	<%=link_to t(:link_more),galleries_path,:class=>'more' %>		
+</article>

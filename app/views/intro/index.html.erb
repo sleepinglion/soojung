@@ -1,0 +1,47 @@
+<% if notice %>
+<%= render :partial => 'layouts/notice',:locals=>{:notice=>notice} %>
+<% end %>
+<section id="sl_intro_index">
+  <article id="intro_main_content" itemscope itemtype="http://schema.org/Person">
+    <% if @user.photo? %> 
+    <div id="sl_intro_left">
+      <%=link_to image_tag(@user.photo.large_thumb,:class=>'img-responsive',:alt=>@user.name),@user.photo.url,:class=>'simple_image',:title=>@user.name, :itemprop=>"image" %>
+    </div>
+    <% end %>
+    <div id="sl_intro_right">
+      <h3><% if @user.alternate_name? %><%=@user.alternate_name %><% else %><%=@user.name %><% end %>  극비 신상공개!!!</h3>
+      <dl>
+        <dt>이름</dt>
+        <dd itemprop="name"><%=@user.name %> <% if @user.alternate_name? %>,  보통 <span itemprop="additionalName"><%=@user.alternate_name %></span>로 불리운다<% end %></dd>
+        <% if @user.gender? %>
+        <dt>성별</dt>
+        <dd itemprop="gender"><%=@user.gender %></dd>
+        <% end %>
+        <% if @user.birth_date? %>
+        <dt>생일</dt>
+        <dd itemprop="birthDate" datetime="<%=user.birthdate %>"><%=@user.birthdate %></dd>
+        <% end %>
+        <% if @user.job_title? %>
+        <dt>직업</dt>
+        <dd itemprop="jobTitle"><%=@user.job_title %></dd>
+        <% end %> 
+        <dt>키</dt>
+        <dd>162.5cm</dd>
+        <dt>몸무게</dt>
+        <dd>00kg(알아서 뭐하게???)</dd>
+        <dt>Size</dt>
+        <dd>쭉쭉은 못되도 빵빵은 됨</dd>
+        <dt>취미</dt>
+        <dd>정종호 사랑하기♡</dd>
+        <dt>특기</dt>
+        <dd>애교,요리</dd>
+      </dl>
+      <% if @user.url? %>
+      <span class="none" itemprop="url"><%=@user.url %></span>
+      <% end %>
+      <% if can?(:create, @user) %>
+        <%= link_to t(:link_new), edit_user_registration_path %>
+      <% end %>
+    </div>
+  </article>
+</section>

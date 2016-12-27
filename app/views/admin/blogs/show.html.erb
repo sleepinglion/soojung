@@ -1,0 +1,21 @@
+<% if notice %>
+<%= render :partial => 'layouts/notice',:locals=>{:notice=>notice} %>
+<% end %>
+<section id="admin_blog_show">
+	<div class="slboard_content">
+		<div class="sl_content_header">
+			<h3><%= @admin_blog.title %></h3>
+			<p>작성자 :<%= @admin_blog.user.name %>&nbsp;&nbsp;&nbsp; 작성일 : <%= @admin_blog.created_at %></p>
+		</div>
+		<div class="sl_content_main">
+			<div class="sl_content_text">  <%= simple_format(@admin_blog.blog_content.content) %></div>
+		</div>
+	</div>
+	<div id="sl_bottom_menu">
+		<% if can? :manage, @admin_blog %>
+		<%= link_to t(:link_new), new_admin_blog_path %>
+		<%= link_to t(:link_edit), edit_admin_blog_path(@admin_blog) %>
+		<% end %>
+		<%= link_to t(:link_list),admin_blogs_path %>
+	</div>
+</section>

@@ -1,0 +1,61 @@
+<% if notice %>
+<%= render :partial => 'layouts/notice',:locals=>{:notice=>notice} %>
+<% end %>
+<section id="question_show" itemscope itemprop="article" itemtype="http://schema.org/Article">	
+	<div class="slboard_content">
+		<div class="sl_content_header box_header">
+			<h2 itemprop="name"><%= @question.title %></h2>
+			<p><%=t(:label_name)%> : <span  itemprop="author"><%=userName(@question,10) %></span>&nbsp;&nbsp;&nbsp; <%=t(:label_created_at)%> : <span itemprop="dateCreated"><%= @question.created_at %></span><span class="none" itemprop="dateModified"><%= @question.updated_at %></span></p>	
+		</div>
+		<div class="sl_content_main">
+			<div class="sl_content_text" itemprop="text"><%= simple_format(@question.question_content.content) %></div>
+		</div>
+	</div>
+	<% unless @question_comments.empty? %>	
+	<div class="box">
+		<div class="box_header">
+			<h2>댓글</h2>
+			<div class="box_icon">
+				<a href="#" class="btn_minimize"><i class="glyphicon glyphicon-chevron-up"></i></a>
+				<a href="#" class="btn_close"><i class="glyphicon glyphicon-remove"></i></a>
+			</div>
+		</div>
+		<div class="box_content">
+			<ul class="sl_comment_list_layer media-list">
+				<%= render @question_comments %>
+			</ul>
+			<%= paginate @question_comments %>			
+		</div>
+	</div>
+	<% end %>
+	<div class="box">
+		<div class="box_header">
+			<h2>댓글 쓰기</h2>
+			<div class="box_icon">
+				<a href="#" class="btn_minimize"><i class="glyphicon glyphicon-chevron-up"></i></a>
+				<a href="#" class="btn_close"><i class="glyphicon glyphicon-remove"></i></a>
+			</div>
+		</div>
+		<div class="box_content">		
+			<%= render "question_comments/form" %>
+		</div>
+	</div>
+	<div id="sl_content_bottom_menu">
+		<%= link_to t(:link_list), questions_path %> 
+		<% if @question.user %>
+			<% if current_user %>
+				<% if @question.user_id==current_user.id %>
+					 &nbsp; | &nbsp; <%=link_to t(:link_edit), edit_question_path(@question) %> &nbsp; | &nbsp;	
+					<%= link_to t(:link_delete), @question, method: :delete, data: { confirm: t(:delete_confirm)} %>
+				<% end %>
+			<% end %>
+		<% else %>
+			 &nbsp; | &nbsp; <%=link_to t(:link_edit), edit_question_path(@question) %> &nbsp; | &nbsp;
+			<% if checkPriv(@question) %>
+			<%= link_to t(:link_delete), @question, method: :delete, data: { confirm: t(:delete_confirm)} %>			
+			<% else %>
+			<%= link_to t(:link_delete), @question, method: :delete %>
+			<% end %>			
+		<% end %>
+	</div>
+</section>

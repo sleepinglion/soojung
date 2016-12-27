@@ -1,0 +1,6 @@
+.breadcrumb > li {float:left;margin-right:20px}
+.breadcrumb > li.active {margin-right:0}
+.nav>li>a {float:left;width:100%}
+.nav-tabs {float:left;width:100%}
+.nav-tabs li.active {border-bottom:1px solid #fff;margin-bottom:-1px}
+#sl_blog {float:left;width:100%}

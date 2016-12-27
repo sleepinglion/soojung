@@ -1,0 +1,29 @@
+<li class="media">
+	<%=link_to '#',:class=>"pull-left" do %>
+		<% if blog_comment.user %>
+			<%= image_tag blog_comment.user.photo.small_thumb,:alt=>blog_comment.user.name %>
+		<% else %>
+			<%= image_tag 'anon.png',:alt=>blog_comment.name %>
+		<% end %>
+	<% end %>
+	<div class="media-body">
+		<h4 class="media-heading"><%=userName(blog_comment,10) %><span class="sl_created_at"><%=blog_comment.created_at.to_date %></span></h4>
+		<div><%=simple_format(blog_comment.content) %>
+		<% if blog_comment.user %>
+			<% if current_user %>
+				<% if blog_comment.user_id==current_user.id %>
+					<%=link_to t(:link_edit), edit_blog_blog_comment_path(@blog,blog_comment) %> &nbsp; | &nbsp;	
+					<%= link_to t(:link_delete), blog_blog_comment_path(@blog,blog_comment), method: :delete, data: { confirm: t(:delete_confirm)} %>
+				<% end %>
+			<% end %>
+		<% else %>
+			<%=link_to t(:link_edit), edit_blog_blog_comment_path(@blog,blog_comment) %> &nbsp; | &nbsp;
+			<% if checkPriv(blog_comment) %>
+			<%= link_to t(:link_delete), blog_blog_comment_path(@blog,blog_comment), method: :delete, data: { confirm: t(:delete_confirm)} %>			
+			<% else %>
+			<%= link_to t(:link_delete), blog_blog_comment_path(@blog,blog_comment), method: :delete %>
+			<% end %>
+		<% end %>
+		</div>
+	</div>
+</li>

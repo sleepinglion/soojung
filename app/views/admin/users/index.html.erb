@@ -1,0 +1,47 @@
+<section id="admin_question_index" class="table-responsive">
+<table width="100%" cellpadding="0" cellspacing="0" class="table table-striped table-hover">
+	<colgroup>
+		<col width="100px" />
+		<col />
+		<col width="70px" />
+		<col width="130px" />
+	</colgroup>
+	<thead>
+			<tr>
+				<th><p class="sl_name">이름</p></th>
+				<th><p class="sl_title">제목</p></th>
+				<th class="sl_right"><p class="sl_count">조회</p></th>
+				<th class="sl_right"><p class="sl_registered_date">등록일</p></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="none">
+				<td><p class="sl_name"></p></td>
+				<td><p><a class="sl_show_link" href="show.php"></a></p></td>
+				<td class="sl_right"><p class="sl_count"></p></td>
+				<td class="sl_right"><p class="sl_registered_date"></p></td>
+			</tr>
+			<% if @admin_users.empty? %>
+			<% @admin_users.each do |user| %>
+			<tr>
+				<td><p class="sl_name"><%= user.user.name %></p></td>
+				<td><p><%= link_to user.title, user  %></p></td>
+				<td class="sl_right"><p class="sl_count"><%= user.impressionist_count(:filter=>:ip_address) %></p></td>
+				<td class="sl_right"><p class="sl_registered_date"><%=user.created_at.to_date %></p></td>
+			</tr>
+			<% end %>			
+			<% else %>
+			<tr>
+				<td colspan="4"><p>글이 없습니다.</p></td>
+			</tr>
+			<% end %>
+</table>
+<div id="sl_bottom_menu">
+	<% if user_signed_in? %>
+	<% if current_user.admin? %>			
+		<%= link_to '글쓰기', new_admin_user_path %>
+	<% end %>
+	<% end %>
+	<%= paginate @admin_users %>
+</div>
+</section>

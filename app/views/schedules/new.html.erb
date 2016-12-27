@@ -1,0 +1,8 @@
+<section id="sl_attendance_new">
+  <% if can? :manage, Attendance %>
+  <%= render 'form_admin' %>
+  <% else %>
+  <%= render 'form' %>
+  <% end %>
+  <%= link_to t(:link_list), attendances_path %>
+</section>

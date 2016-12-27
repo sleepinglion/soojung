@@ -1,0 +1,61 @@
+<section id="admin_notice_index" class="table-responsive">
+  <table width="100%" cellpadding="0" cellspacing="0" class="table table-striped table-hover">
+    <colgroup>
+      <col width="100px" />
+      <col />
+      <col width="40px" />
+      <col width="70px" />
+      <col width="130px" />
+      <% if can?(:update, Notice) || can?(:delete, Notice) %>
+      <col <%=raw manage_width(Notice) %> />
+      <% end %>
+    </colgroup>
+    <thead>
+      <tr>
+        <th><p class="sl_name">이름</p></th>
+        <th><p class="sl_title">제목</p></th>
+        <th><p class="sl_comment">댓글</p></th>
+        <th><p class="sl_count">조회</p></th>
+        <th><p class="sl_created_at">등록일</p></th>
+        <th><p class="sl_manage"><%=t(:label_manage) %></p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% unless @admin_notices.empty? %>
+      <% @admin_notices.each do |admin_notice| %>
+      <tr>
+        <td><p class="sl_name" title="<%=userName(admin_notice) %>"><%=userName(admin_notice,10) %></p></td>
+        <td><p><%= link_to admin_notice.title, admin_notice_path(admin_notice) %></p></td>
+        <td class="sl_right"><p class="sl_count"></p></td>
+        <td class="sl_right"><p class="sl_count"><%= admin_notice.impressionist_count(:filter=>:ip_address) %></p></td>
+        <td class="sl_right"><p class="sl_registered_date"><%=admin_notice.created_at.to_date %></p></td>
+        <% if can?(:update, admin_notice) || can?(:delete, admin_notice) %>
+        <td>
+          <% if can? :update, admin_notice %>
+          <%= link_to edit_admin_notice_path(admin_notice),:class=>"btn btn-default btn-sm" do %>
+          <i class="glyphicon glyphicon-pencil"></i> <%=t(:link_edit) %>
+          <% end %>
+          <% end %>
+          <% if can? :delete, admin_notice %>
+          <%= link_to admin_notice_path(admin_notice), :method => :delete, :data => { :confirm => t(:delete_confirm) },:class=>"btn btn-sm btn-danger pull-right" do %>
+          <i class="glyphicon glyphicon-trash"></i> <%=t(:link_delete) %>
+          <% end %>
+          <% end %>
+        </td>
+        <% end %>
+      </tr>
+      <% end %>
+      <% else %>
+      <tr>
+        <td colspan="6"><p><%=t(:no_data) %></p></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div id="sl_bottom_menu">
+    <% if can? :create,Notice %>
+    <%= link_to t(:link_new), new_admin_notice_path %>
+    <% end %>
+    <%= paginate @admin_notices %>
+  </div>
+</section>

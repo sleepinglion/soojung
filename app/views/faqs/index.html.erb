@@ -1,0 +1,77 @@
+<% if notice %>
+<%= render :partial => 'layouts/notice',:locals=>{:notice=>notice} %>
+<% end %>
+<section id="sl_faq_index">	
+	<article>
+		<ol id="faqCategoryList">
+			<% unless @faq_categories.empty? %>			
+			<% @faq_categories.each do |faq_category| %>			
+			<li <% if(@categoryId==faq_category.id) %>class="on"<% end %>>
+				<%= link_to truncate(faq_category.title,:length => 20),faqs_path(:faq_category_id=>faq_category.id),{:class=>'title'} %>
+				<% if(@categoryId==faq_category.id) %>				
+				<% if can?(:update, FaqCategory) || can?(:delete, FaqCategory) %>
+				<div class="sl_faq_category_menu">
+					<% if can? :update, FaqCategory %>
+					<%= link_to t(:link_edit), edit_faq_category_path(faq_category) %>
+					<% end %>
+					<% if can? :delete, FaqCategory %>
+					<% if can? :update, FaqCategory %>
+					<br />
+					<% end %>					
+					<%= link_to t(:link_delete), faq_category, method: :delete, data: { confirm: t(:delete_confirm) } %>
+					<% end %>
+				</div>
+				<% end %>
+				<% end %>
+			</li>
+			<% end %>
+  		<% else %>
+			<li><%=t(:no_data)%></li>
+			<% end %>
+		</ol>		
+	</article>
+	<article>
+		<dl id="faqList">
+			<% unless @faqs.empty? %>		
+			<% @faqs.each do |faq| %>
+			<dt <% if @faq %><% if @faq.id==faq.id %>class="on"<% end %><% end %>>
+				<%= link_to truncate(faq.title,:length => 80), faqs_path(:faq_category_id=>params[:faq_category_id],:id=>faq),{:class=>'title'} %>
+				<% if can?(:update, Faq) || can?(:delete, Faq) %>
+				<div class="sl_faq_menu">
+					<% if can? :update, Faq %>
+					<%= link_to t(:link_edit), edit_faq_path(faq) %>
+					<% end %>
+					<% if can? :delete, Faq %>
+					<% if can? :update, Faq %>
+					&nbsp; | &nbsp;
+					<% end %>
+					<%= link_to t(:link_delete), faq, method: :delete, data: { confirm: t(:delete_confirm) } %>
+					<% end %>
+				</div>
+				<% end %>
+			</dt>
+			<% if(@faq)%>
+			<% if(faq.id==@faq.id) %>
+					<dd><%=simple_format(@faq.faq_content.content) %></dd>
+			<% end %>
+			<% end %>
+			
+			<% end %>	
+  			<% else %>	
+  			<dt><%=t(:no_data)%></dt>
+			<% end %>
+		</dl>
+	</article>
+	<div id="sl_bottom_menu">
+		<% if can? :create, FaqCategory %>
+		<%= link_to 'FAQ 분류 생성',new_faq_category_path,:rel=>"nofollow" %>
+		<% end %> 
+		<% if can? :create, Faq %>
+		<% if can? :create, FaqCategory %>		
+				&nbsp; | &nbsp;
+		<% end %>
+		<%= link_to 'FAQ 생성',new_faq_path(:faq_category_id=>@categoryId),:rel=>"nofollow" %>		
+		<% end %>
+		<%= paginate @faqs %>
+	</div>
+</section>

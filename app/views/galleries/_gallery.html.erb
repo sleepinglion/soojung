@@ -1,0 +1,63 @@
+<% if @menu_setting.use_category %>
+	<ol class="nav nav-tabs sl_categories">
+		<% unless @gallery_categories.empty? %>
+			<% @gallery_categories.each do |gallery_category| %>
+			<li <% if(@gallery_category_id==gallery_category.id) %>class="active"<% end %>>
+		  <%= link_to galleries_path(:gallery_category_id=>gallery_category.id) do %>
+		  <%=gallery_category.title.truncate(20) %><span class="hidden-xs">(<%=gallery_category.galleries_count %>)</span>
+		  <% end %>
+		  </li>
+			</li>
+			<% end %>
+		<% else %>	
+		<li><%=t(:no_data)%></li>
+		<% end %>
+	</ol>
+<% end %>
+<div id="sl_gallery" <% if @gallery %>itemscope itemtype="http://schema.org/ImageObject"<% end %>>
+	<% if @gallery %>
+	<div id="sl_gallery_left">
+		<span class="none" itemprop="genre"><%=@gallery.gallery_category_id %></span>
+		<%=link_to @gallery.photo.url,{:title=>@gallery.title,:class=>'simple_image'} do %>
+		<%=image_tag @gallery.photo.large_thumb,:class=>'img-responsive',:itemprop=>"contentURL" %>
+		<span id="gallery<%=@gallery.id %>_img<%=@gallery.id %>_span" class="image_caption" itemprop="name"><%=@gallery.title %></span>
+		<% end %>
+	</div>
+	<div id="sl_gallery_right">
+		<div itemprop="description"><%=simple_format @gallery.content %></div>
+		<div class="add_info"><%= render :partial => 'users/data', :locals => { :user => @gallery.user, :itemprop => 'author' } %> / <span itemprop="dateCreated" datetime="<%=@gallery.created_at %>"><%=@gallery.created_at.to_date %></span><span class="none" itemprop="dateModified" datetime="<%=@gallery.updated_at %>"><%=@gallery.updated_at.to_date %></span></div> 
+		<% if can? :update, @manage %>
+		<div id="sl_gallery_menu">
+			<%= link_to t(:link_edit), edit_gallery_path(@gallery) %> &nbsp; | &nbsp; <%= link_to t(:link_delete), @gallery, method: :delete, data: { confirm: t(:delete_confirm)} %>
+		</div>
+		<% end %>
+	</div>
+	<% end %>
+	<% unless @galleries.empty? %>
+	<div id="sl_gallery_slide">
+		<a class="prev browse hidden-xs left"></a>
+		<div class="scrollable">
+			<div class="items">
+				<% @galleries.each_slice(6) do |gallery| %>
+				<ul class="item">
+					<% gallery.each_with_index do |gallery,index| %>
+					<li><%=link_to image_tag(gallery.photo.small_thumb,:alt=>gallery.title),gallery_path(gallery),:title=>gallery.title %><% if gallery.id==@gallery.id %><span class="none" itemprop="thumbnailUrl"><%=gallery.photo.small_thumb %></span><% end %></li>
+					<% end %>
+				</ul>
+				<% end %>
+			</div>
+		</div>
+		<a class="next browse hidden-xs right"></a>
+	</div>
+	<% else %>
+	<div>
+		<p><%=t(:no_data)%></p>
+	</div>
+	<% end %>
+	<div id="sl_bottom_menu">
+		<% if can? :create, Gallery %>
+		<%= link_to t(:link_new),new_gallery_path(:gallery_category_id=>@categoryId),:rel=>"nofollow" %>
+		<% end %>
+		<%= paginate @galleries %>
+	</div>	
+</div>

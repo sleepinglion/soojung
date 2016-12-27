@@ -1,0 +1,16 @@
+<header>
+	<nav>
+		<ul>
+			<li><%=link_to '홈' , '/admin' %></li>
+			<li><%=link_to '메뉴관리',:controller=>'resources' %></li>
+			<li><%=link_to '수정이는?',:controller=>'intro' %></li>
+			<li><%=link_to '블로그',:controller=>'blogs' %></li>			
+			<li><%=link_to '사진첩',:controller=>'galleries' %></li>				
+			<li><%=link_to '공지사항', :controller=>'notices' %></li>
+			<li><%=link_to '질문,답변', :controller=>'questions' %></li>
+			<li><%=link_to 'FAQ', :controller=>'faqs' %></li>
+			<li><%=link_to '방명록', :controller=>'guest_books' %></li>
+		</ul>
+	</nav>	
+	<div id="welcome">환영합니다. <a href="/admin/account/show.php"><%=current_user.name %> 님</a></div>
+</header>

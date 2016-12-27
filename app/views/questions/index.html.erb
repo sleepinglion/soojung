@@ -1,0 +1,41 @@
+<section id="sl_question_index" class="table-responsive">	
+	<table width="100%" cellpadding="0" cellspacing="0" class="table slboard_list">
+		<colgroup>
+			<col width="100px" />
+			<col />
+			<col width="70px" />			
+			<col width="70px" />
+			<col width="130px" />
+		</colgroup>
+		<thead>
+			<tr>
+				<th><p class="sl_name"><%=t(:label_name) %></p></th>
+				<th><p class="sl_title"><%=t(:label_title) %></p></th>
+				<th class="sl_right"><p class="sl_count"><%=t(:label_answer) %></p></th>				
+				<th class="sl_right"><p class="sl_count"><%=t(:label_count) %></p></th>
+				<th class="sl_right"><p class="sl_registered_date"><%=t(:label_created_at) %></p></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% unless @questions.empty? %>
+			<% @questions.each do |question| %>
+			<tr>
+				<td><p class="sl_name" title="<%=userName(question) %>"><%=userName(question,10) %></p></td>
+				<td><p><%=checkPrivLink(question) %> &nbsp; <% if(question.secret?) %><%=image_tag('/assets/board/lock.png') %><% end %></p></td>
+				<td class="sl_right"><p class="sl_count"><% if question.question_comments_count? %>답변<% else %>미답변<% end %></p></td>
+				<td class="sl_right"><p class="sl_count"><%=question.count+question.impressionist_count(:filter=>:ip_address) %></p></td>
+				<td class="sl_right"><p class="sl_registered_date"><%=question.created_at.to_date %></p></td>
+			</tr>
+			<% end %>			
+			<% else %>
+			<tr>
+				<td colspan="5"><p><%=t(:no_data) %></p></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<div id="sl_bottom_menu">
+		<%= link_to t(:link_new), new_question_path %>
+		<%= paginate @questions %>
+	</div>
+</section>

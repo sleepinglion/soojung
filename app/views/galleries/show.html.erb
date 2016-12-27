@@ -1,0 +1,6 @@
+<section id="sl_gallery_show">
+  <% if notice %>
+  <%= render :partial => 'layouts/notice',:locals=>{:notice=>notice} %>
+  <% end %>
+  <%= render 'gallery' %>
+</section>

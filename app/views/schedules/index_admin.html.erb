@@ -1,0 +1,40 @@
+<section id="sl_attendance_index" class="table-responsive">
+  <table width="100%" cellpadding="0" cellspacing="0" class="table table-striped">
+    <colgroup>
+      <col width="80px" />
+      <col width="80px" />      
+      <col />
+      <col width="130px" />
+    </colgroup>
+    <thead>
+      <tr>
+        <th><p class="sl_num"><%=t(:label_number) %></p></th>
+        <th><p class="sl_user_id"><%=t(:label_user_id) %></p></th>        
+        <th><p class="sl_name"><%=t(:label_name) %></p></th>
+        <th class="sl_right"><p class="sl_registered_date"><%=t(:label_attendance) %></p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% unless @attendances.empty? %>
+      <% @attendances.each do |attendance| %>
+      <tr>
+        <td><p class="sl_num"><%=attendance.id %></p></td>
+        <td><p class="sl_user_id"><%=attendance.user_id %></p></td>        
+        <td><p class="sl_name"><%=attendance.user.name %>(<%=attendance.user.login_id %>)</p></td>
+        <td class="sl_right"><p class="sl_registered_date"><%=attendance.created_at.to_date %></p></td>
+      </tr>
+      <% end %>
+      <% else %>
+      <tr>
+        <td colspan="4"><p><%=t(:no_data) %></p></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div id="sl_bottom_menu">
+  <% if can? :create, Attendance %>
+    <%= link_to t(:link_new), new_attendance_path,:rel=>"nofollow" %>
+  <% end %>
+  <%= paginate @attendances %>
+  </div>
+</section>

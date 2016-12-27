@@ -1,0 +1,18 @@
+<div id='calendar'></div>
+<% if @attendance %>
+<%= render 'form' %>
+<% end %>
+<script type="text/javascript">
+
+
+var a_events=[
+  <% unless @attendances.empty? %>
+  <% @attendances.each_with_index do |attendance, index| %>
+        {
+            title  : '출석 <%=index+1 %>',
+            start  : '<%=attendance.created_at.to_date %>'
+        } <% if index+1<@attendances.count  %>,<% end %>
+  <% end %>
+  <% end %>
+    ];// any other event sources...
+</script>

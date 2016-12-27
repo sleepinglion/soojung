@@ -1,0 +1,64 @@
+html,body {margin:0;padding:0;height: 100%}
+body { font-family:"굴림",gulim,"돋움",Dotum,Arial, Helvetica, sans-serif;color:#333; font-size:12px}
+label {vertical-align:middle;cursor:pointer}
+a img {border:none}
+input {vertical-align:middle}
+fieldset {border:none}
+legend {display:none}
+a{color:#666;text-decoration:none;}
+a:active {color:red}
+a:hover{color:#333;text-decoration:underline;}
+a img {border:none}
+
+h1,h2,h3,h4,h5 {font-size:1em}
+
+/* Getting the new tags to behave */
+article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, meter, nav, output, progress, section, source, video {display:block;}
+mark, rp, rt, ruby, summary, time {display:inline;}
+
+/* layout */
+header {position:relative;float:left;width:100%;height:50px;margin:0 auto;padding:0;border-bottom:1px solid #ccc;background:#eee}
+footer {float:left;width:100%;margin:0 auto;background:#333;color:#ccc;height:50px;margin:0;padding:0;text-align: center;}
+#mom {clear:both;float:left;width:100%;min-height:100%;margin:-51px 0 -70px;padding:0}
+#main {float:left;width:100%;margin:0;padding:104px 0 70px}
+aside {float:left;width:150px;height:80%;background:#ccc}
+#sub_main {float:left}
+
+/* Common Class */
+.arial {font-family:Arial}
+.noneData {text-align:center}
+.clear{clear:both}
+.none{display:none}
+.number {font-family:Arial;letter-spacing:0}
+.clear{clear:both}
+.none{display:none}
+.wrapper {margin:0 auto;width:728px}
+.sl_input {	border:1px solid #ccc;border-top-color:#999;border-left-color:#999;padding:4px 2px;font-size:12px}
+.sl_input:focus {background-color:#ffd}
+.sl_tab_menu {float:left;margin:0 0 20px;padding:0;width:100%;list-style:none;border-bottom:1px solid #ccc}
+.sl_tab_menu li {float:left;margin:0;padding:0}
+.sl_tab_menu a {display:block;margin:0 2px 0 0;padding:5px 10px;border:1px solid #ccc;border-bottom:none;background:#ccc}
+.sl_tab_menu .active a {border-bottom:1px solid #fff;margin-bottom:-1px;background:#fff;color:#333;font-weight:bold}
+
+
+header {}
+header nav ul {float:left;margin:2em 0 0 3em;padding:0;list-style:none}
+header nav ul li {float:left;margin:0 20px 0 0;padding:0}
+header #welcome {float:right;margin:10px 10px 0 0}
+
+/* main_list */
+.slboard_list {float:left;width:100%;margin:5px 0;border-bottom:1px solid #ccc;border-collapse:collapse; }
+.slboard_list p {margin:0;padding:0;line-height:100%}
+.slboard_list th {padding:10px 0;background:#ccc}
+.slboard_list td {padding:10px 0;border-bottom:1px solid #f0f0f0;}
+.slboard_list tr.nb td{border-bottom:none}
+.slboard_list td a {color:#666;text-decoration:none}
+.slboard_list td a:hover {color:#333;text-decoration:underline}
+.slboard_list td .sl_photo {margin:0;padding:0}
+.slboard_list th p.registered_date{display:inline;padding-left:40px}
+.slboard_list th p.sl_name,.slboard_list td p.sl_name{text-align:left;text-indent:10px}
+.slboard_list th p.sl_registered_date {margin-right:10px}
+.slboard_list td p.sl_registered_date{font-family:Arial;margin-right:10px;letter-spacing:0;color:#999}
+.slboard_list td p.sl_count,.slboard_list td p.comment  {font-family:Arial;letter-spacing:0;color:#999}
+.slboard_list td .file_link {margin-left:10px}
+
