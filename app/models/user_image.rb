@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 require 'carrierwave/orm/activerecord'
 
 class UserImage < ActiveRecord::Base

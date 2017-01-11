@@ -3,8 +3,8 @@ Group.create!(:title=>'manage')
 Group.create!(:title=>'user')
 Group.create!(:title=>'viewer')
 
-User.create!(:group_id=>1,:email => 'fome234@nate.com', :nickname=>'예쁜-수정', :password => 'jjh123456', :password_confirmation => 'jjh123456',:photo=>File.open(Rails.root.join("app", "assets", "images", "intro", "image.jpg")), :admin=>1)
-User.create!(:group_id=>1,:email => 'toughjjh@gmail.com', :nickname=>'잠자는-사자', :password => 'jjh123456', :password_confirmation => 'jjh123456',:photo=>File.open(Rails.root.join("app", "assets", "images", "intro", "sl.jpg")), :admin=>1)
+User.create!(:group_id=>1,:email => 'fome234@nate.com', :nickname=>'예쁜-수정', :password => 'jjh123456', :password_confirmation => 'jjh123456',:photo=>File.open(Rails.root.join("app", "assets", "images", "intro", "image.jpg")))
+User.create!(:group_id=>1,:email => 'toughjjh@gmail.com', :nickname=>'잠자는-사자', :password => 'jjh123456', :password_confirmation => 'jjh123456',:photo=>File.open(Rails.root.join("app", "assets", "images", "intro", "sl.jpg")))
 
 AdPosition.create!(:id=>1,:title=>'광고 표시안함',:position=>'none')
 AdPosition.create!(:id=>2,:title=>'위에 표시',:position=>'top')
