@@ -4,7 +4,6 @@ class CreateDeviseToUsers < ActiveRecord::Migration
       t.references :group, :null=>false
       ## Database authenticatable
       t.string :email,  :null => false
-      t.string :name, :null => false, :limit=>60
       t.string :nickname, :null => false, :limit=>60
       t.string :photo, :null=>false, :limit=>100
       t.string :encrypted_password, :null => false, :limit=>100

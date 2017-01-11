@@ -105,7 +105,7 @@ header nav {float:right;background:#333;margin:0;padding:0}
 #faqList { float:left;width:100%;margin:0;padding:15px 0;background:#f3f3f3}
 #faqList dt {position:relative;float:left;width:95%;display:inline;margin:2px 0 0 15px;padding:0;cursor:pointer;}
 #faqList dt.none {display:none}
-#faqList dt a.title {display:block;padding:11px 0 11px 40px;color:#666;border-bottom:1px solid #eee;background:#fff url("<%=asset_path('board/toggle_open.png') %>") no-repeat 10px 11px;text-decoration:none}
+#faqList dt a.title {display:block;padding:11px 0 11px 40px;color:#666;border-bottom:1px solid #eee;background:#fff url(asset-url('board/toggle_open.png')) no-repeat 10px 11px;text-decoration:none}
 #faqList dt a.title:hover {border-bottom:1px solid #ddd;}
 #faqList dt .sl_faq_menu {position:absolute;top:10px;right:10px}
 #faqList dt.on a {background-position:10px -46px;}
@@ -140,7 +140,7 @@ header nav {float:right;background:#333;margin:0;padding:0}
 .check_password_form {float:left;width:300px;background:#fff;width:280px;margin:0;padding:0px}
 .check_password_form .section_top {float:left;width:100%;margin:0 0 10px;padding:0;height:27px;background:#ccc}
 .check_password_form .section_top h2 {float:left;display:inline;margin:7px 0 0 20px;padding:0;font-size:12px;color:#fff;}
-.check_password_form .section_top .close_popup {float:right;margin:5px 0 0;text-indent:-9999px;background: url("/assets/board/close_popup.png") no-repeat scroll 0 0 transparent;display: block;width:20px;height:20px;text-decoration: none;}
+.check_password_form .section_top .close_popup {float:right;margin:5px 0 0;text-indent:-9999px;background: url(asset-url("/assets/board/close_popup.png")) no-repeat scroll 0 0 transparent;display: block;width:20px;height:20px;text-decoration: none;}
 .check_password_form form {margin:0;padding:0px 20px 20px}
 .check_password_form form label {text-indent:-9999px;display:block;height:1px}
 .check_password_form #notice {margin:0 0 0 30px}
@@ -253,7 +253,7 @@ header nav {float:right;background:#333;margin:0;padding:0}
 #sl_main_blog li.nm {margin:0}
 
 
-a.browse {background: url(<%=asset_path "hori_large.png" %>) no-repeat scroll 0 0 transparent;cursor: pointer;display: block;position:absolute;top:10px;font-size: 1px;height: 30px;margin: 40px 10px;width: 30px}
+a.browse {background: url(asset-url("hori_large.png")) no-repeat scroll 0 0 transparent;cursor: pointer;display: block;position:absolute;top:10px;font-size: 1px;height: 30px;margin: 40px 10px;width: 30px}
 a.browse:hover {text-decoration:none}
 a.left {left:-43px}
 a.right {right:-35px;background-position: 0 -30px;clear: right;margin-right: 0}

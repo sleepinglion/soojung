@@ -3,6 +3,7 @@
 class CreateFaqs < ActiveRecord::Migration
   def change
     create_table :faq_categories do |t|
+      t.references :user, :null=>false      
       t.string :title,:null=>false
       t.boolean :enable, :null=>false, :default=>true
       t.timestamps :null=>false

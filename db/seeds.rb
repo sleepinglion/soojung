@@ -1,7 +1,10 @@
-# encoding: utf-8
+Group.create!(:title=>'admin')
+Group.create!(:title=>'manage')
+Group.create!(:title=>'user')
+Group.create!(:title=>'viewer')
 
-User.create!(:email => 'fome234@nate.com', :name=>'예쁜-수정', :password => 'wjdwhdgh486', :password_confirmation => 'wjdwhdgh486',:gender=>'여자',:alternate_name=>'귀염수정',:description=>'예쁘고 귀여운 애교만점의 주영이 엄마 인수정이에요', :job_title=>'전업주부',:url=>'http://www.soojung.pe.kr',:photo=>File.open(Rails.root.join("app", "assets", "images", "intro", "image.jpg")), :admin=>1)
-User.create!(:email => 'toughjjh@gmail.com', :name=>'잠자는-사자', :password => 'jjh123456', :password_confirmation => 'jjh123456',:photo=>File.open(Rails.root.join("app", "assets", "images", "intro", "sl.jpg")), :admin=>1)
+User.create!(:group_id=>1,:email => 'fome234@nate.com', :nickname=>'예쁜-수정', :password => 'jjh123456', :password_confirmation => 'jjh123456',:photo=>File.open(Rails.root.join("app", "assets", "images", "intro", "image.jpg")), :admin=>1)
+User.create!(:group_id=>1,:email => 'toughjjh@gmail.com', :nickname=>'잠자는-사자', :password => 'jjh123456', :password_confirmation => 'jjh123456',:photo=>File.open(Rails.root.join("app", "assets", "images", "intro", "sl.jpg")), :admin=>1)
 
 AdPosition.create!(:id=>1,:title=>'광고 표시안함',:position=>'none')
 AdPosition.create!(:id=>2,:title=>'위에 표시',:position=>'top')
@@ -28,12 +31,12 @@ ResourcePhoto.create!(:id=>5,:photo=>File.open(Rails.root.join("app", "assets", 
 ResourcePhoto.create!(:id=>6,:photo=>File.open(Rails.root.join("app", "assets", "images", "menu5.jpg")),:alt=>'FAQ')
 ResourcePhoto.create!(:id=>9,:photo=>File.open(Rails.root.join("app", "assets", "images", "menu6.jpg")),:alt=>'방명록')
 
-BlogType.create!(:id=>1,:title=>'일반형')
-BlogType.create!(:id=>2,:title=>'게시판형')
-BlogType.create!(:id=>3,:title=>'갤러리형') 
+#BlogType.create!(:id=>1,:title=>'일반형')
+#BlogType.create!(:id=>2,:title=>'게시판형')
+#BlogType.create!(:id=>3,:title=>'갤러리형')
 
-BlogCategory.create!(:id=>1,:blog_type_id=>1,:title=>'일상')
-BlogCategory.create!(:id=>2,:blog_type_id=>1,:title=>'요리')
+BlogCategory.create!(:id=>1,:user_id=>1,:title=>'일상')
+BlogCategory.create!(:id=>2,:user_id=>1,:title=>'요리')
 
 Intro.create!(:id=>1,:title=>'이름',:description=>'인수정')
 Intro.create!(:id=>2,:title=>'나이',:description=>Time.now.year-1980)
@@ -43,20 +46,20 @@ Intro.create!(:id=>5,:title=>'size',:description=>'쭉쭉은 못되도 빵빵은
 Intro.create!(:id=>6,:title=>'취미',:description=>'정종호 사랑하기♡')
 Intro.create!(:id=>7,:title=>'특기',:description=>'애교,요리')
 
-GalleryCategory.create!(:id=>1,:title=>'수정이')
-GalleryCategory.create!(:id=>2,:title=>'남편')
-GalleryCategory.create!(:id=>3,:title=>'아들')
-GalleryCategory.create!(:id=>4,:title=>'멍멍이')
-GalleryCategory.create!(:id=>5,:title=>'풍경')
+GalleryCategory.create!(:id=>1,:user_id=>1,:title=>'수정이')
+GalleryCategory.create!(:id=>2,:user_id=>1,:title=>'남편')
+GalleryCategory.create!(:id=>3,:user_id=>1,:title=>'아들')
+GalleryCategory.create!(:id=>4,:user_id=>1,:title=>'멍멍이')
+GalleryCategory.create!(:id=>5,:user_id=>1,:title=>'풍경')
     
 Notice.create!(:id=>1,:user_id=>1,:title=>'예쁘고 귀여운 수정이의 집이 다시 개장했습니다.')
 NoticeContent.create!(:id=>1,:content=>'그동안 수많은 방문자에 비해서 준비되지 못하였는데 이제 보다 업그레이드된 모습으로 다시 찾아뵙게되었습니다.
     수정이와 소통하는 공간으로 계속 많은 이용바랍니다.')
     
-FaqCategory.create!(:title=>'수정이 미모')
-FaqCategory.create!(:title=>'수정이 애교')
-FaqCategory.create!(:title=>'잘생긴 남친')
-FaqCategory.create!(:title=>'멍멍이')
+FaqCategory.create!(:user_id=>1,:title=>'수정이 미모')
+FaqCategory.create!(:user_id=>1,:title=>'수정이 애교')
+FaqCategory.create!(:user_id=>1,:title=>'잘생긴 남친')
+FaqCategory.create!(:user_id=>1,:title=>'멍멍이')
 
 Faq.create!(:faq_category_id=>1,:id=>1,:title=>'수정이는 어떻게 이렇게 이쁜가요?')
 Faq.create!(:faq_category_id=>1,:id=>2,:title=>'수정이는  목이 어떻게 그리 긴가요?')
@@ -88,11 +91,6 @@ Question.create!(:id=>1,:name=>'방문자',:title=>'수정이는 어떻게 그�
 QuestionContent.create!(:id=>1,:content=>'저도 수정이의 반만큼만 예뻤으면 좋겠어요....... ㅠ.ㅠ
 제발 방법좀 가르쳐 주세요.')
 
-
-bt1=BlogType.find(1)
-bt2=BlogType.find(2)
-bt3=BlogType.find(3)
-
 bc1=BlogCategory.find(1)
 bc2=BlogCategory.find(2)
 
@@ -104,12 +102,12 @@ gc5=GalleryCategory.find(5)
 
 I18n.locale=:en
 
-bt1.title='common'
-bt1.save
-bt2.title='board'
-bt2.save
-bt3.title='gallery'
-bt3.save 
+#bt1.title='common'
+#bt1.save
+#bt2.title='board'
+#bt2.save
+#bt3.title='gallery'
+#bt3.save 
 
 bc1.title='common'
 bc1.save
@@ -129,12 +127,12 @@ gc5.save
 
 I18n.locale='zh-CN'
 
-bt1.title='一般'
-bt1.save
-bt2.title='板'
-bt2.save
-bt3.title='画廊'
-bt3.save 
+#bt1.title='一般'
+#bt1.save
+#bt2.title='板'
+#bt2.save
+#bt3.title='画廊'
+#bt3.save 
 
 bc1.title='一般'
 bc1.save
@@ -154,12 +152,12 @@ gc5.save
 
 I18n.locale='ja'
 
-bt1.title='一般'
-bt1.save
-bt2.title='板'
-bt2.save
-bt3.title='画廊'
-bt3.save 
+#bt1.title='一般'
+#bt1.save
+#bt2.title='板'
+#bt2.save
+#bt3.title='画廊'
+#bt3.save 
 
 bc1.title='一般'
 bc1.save
