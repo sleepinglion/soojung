@@ -55,13 +55,13 @@ module BoardHelper
   def userName(gg,length=false)
     if length
       if gg.user
-        return gg.user.name
+        return gg.user.nickname
       else 
         return gg.name
       end
     else
       if gg.user
-        return gg.user.name
+        return gg.user.nickname
       else 
         return gg.name
       end            

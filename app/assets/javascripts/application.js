@@ -1,4 +1,6 @@
+//= require jquery
 //= require jquery_ujs
+//= require bootstrap-sprockets
 //= require plugin/jquery.easing.pack
 
 window['CKEDITOR_BASEPATH']='/ckeditor/';
