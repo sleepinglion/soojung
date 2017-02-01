@@ -3,11 +3,11 @@ class CreateDeviseToUsers < ActiveRecord::Migration
     create_table :users do |t|
       t.references :group, :null=>false
       ## Database authenticatable
-      t.string :email,  :null => false
+      t.string :email,  :null => false, :limit=>150
       t.string :nickname, :null => false, :limit=>60
       t.string :photo, :null=>false, :limit=>100
       t.string :encrypted_password, :null => false, :limit=>100
-      t.string :description
+      t.string :description, :limit=>150
 
       ## Recoverable
       t.string   :reset_password_token, :limit=>100
