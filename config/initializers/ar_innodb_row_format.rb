@@ -1,4 +1,4 @@
-if ActiveRecord::Base.connection.adapter_name == 'MySQL'
+if ActiveRecord::Base.connection.adapter_name == 'mysql2'
 
 ActiveSupport.on_load :active_record do
   module ActiveRecord::ConnectionAdapters
