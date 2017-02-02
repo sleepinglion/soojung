@@ -33,19 +33,19 @@ gem 'cancan'
 gem 'kaminari'
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'unf'
-gem 'jquery-easing-rails'
-gem 'sitemap_generator'
 gem 'impressionist'
+gem 'acts-as-taggable-on'
 gem 'ckeditor'
 gem 'fancybox2-rails', :path=>"vendor/gems/fancybox2-rails"
+gem 'jquery-easing-rails'
+gem 'sitemap_generator'
+gem 'meta-tags'
+gem 'gretel'
+
+gem 'unf'
 gem 'rack-cache'
 gem 'dalli'
 #gem 'kgio'
-gem 'meta-tags'
-gem 'gretel'
-gem 'acts-as-taggable-on'
-gem 'listen'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -60,6 +60,7 @@ group :development do
 end
 
 group :production do
+  #gem 'asset_sync'
   gem 'mysql2'
   gem 'connect'
   gem 'redis-rails'

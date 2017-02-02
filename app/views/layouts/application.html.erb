@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <html lang="<%=I18n.locale %>">
 <head>
-<title><%=@title %></title>
-<meta charset="utf-8" />
-<meta name="robots" content="<%=@meta_robot %>" />
-<meta name="application-name" content="<%=@meta_application_name %>" />
-<meta name="keywords" content="<%=@meta_keyword %>" />
-<meta name="description" content="<%=@meta_description %>" />
-<meta name="author" content="Sleeping-Lion" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="shortcut icon" href="<%=asset_path('favicon.ico') %>" />
-<%= stylesheet_link_tag "//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css", :media => "all" %>
-<%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-<%= csrf_meta_tags %>
-<!--[if IE]>
-<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
-<![endif]-->
+	<meta charset="utf-8" />
+	<%=display_meta_tags :site => t(:application_name),
+	:title=>@title,
+	:description => @meta_description,
+	:keywords => @meta_keywords,
+	:separator => t(:title_separator),
+	:viewport => "width=device-width, initial-scale=1.0, user-scalable=no",
+	:reverse => true %>
+	<%=display_meta_tags og: {
+  	title:   @title,
+  	description: @meta_description,
+  	url:      @meta_url,
+  	image:    @meta_image
+	}
+	%>
+	<meta name="author" content="Sleeping-Lion" />
+	<link rel="shortcut icon" href="<%=asset_path('favicon.ico') %>" />
+	<%= stylesheet_link_tag "application", :media=>"all", "data-turbolinks-track" => true %>
+	<%= csrf_meta_tags %>
+	<!--[if IE]>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+	<![endif]-->
 </head>
 <body itemscope itemtype="<%=@page_itemtype %>">
-<!--[if lt IE 9]>
-	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<%= stylesheet_link_tag "ie", media: "all", "data-turbolinks-track" => true %>
-<![endif]-->
 <%= render :partial => 'layouts/header' %>
-<section id="mom">
-	<section id="main" class="container">
+<div id="mom">
+	<div id="main" class="container">
 		<% unless controller.controller_name=='home' %>
-		<div class="page-header" itemscope itemtype="http://schema.org/WebPage">
-			<h2 itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/WebPageElement"><span itemprop="headline"><%=@controller_name %></span></h2>
-			<%= breadcrumbs :semantic=>true, style: :bootstrap %>
-		</div>
+		<%= render :partial => 'layouts/page_header' %>
 		<% else %>
 		<div>&nbsp;</div>
 		<% end %>
@@ -38,16 +38,16 @@
 		<%= render :partial => 'layouts/ad' %>
 		<% end %>
 		<% end %>
-		<section class="sub_main">	
-				<%=yield %>
-		</section>
+		<div class="sub_main">
+			<%=yield %>
+		</div>
 		<% unless	@menu_setting.nil? %>				
 		<% if @ad && @menu_setting.ad_position_id==3 %>
 		<%= render :partial => 'layouts/ad' %>
 		<% end %>
 		<% end %>
-	</section>
-</section>
+	</div>
+</div>
 <%= render :partial => 'layouts/footer' %>
 <div class="slboard_overlay" id="overlay"></div>
 <%= javascript_include_tag @script %>
