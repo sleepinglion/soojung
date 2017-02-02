@@ -45,6 +45,7 @@ gem 'dalli'
 gem 'meta-tags'
 gem 'gretel'
 gem 'acts-as-taggable-on'
+gem 'listen'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -59,7 +60,6 @@ group :development do
 end
 
 group :production do
-  #gem 'asset_sync'
   gem 'mysql2'
   gem 'connect'
   gem 'redis-rails'

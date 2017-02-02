@@ -26,15 +26,9 @@
 <section id="mom">
 	<section id="main" class="container">
 		<% unless controller.controller_name=='home' %>
-		<div class="page-header">
-			<h1 itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/WebPageElement"><span itemprop="headline"><%=@controller_name %></span></h1>
-			<ul class="breadcrumb" itemprop="breadcrumb">
-				<li><%=link_to t(:home),root_path %></li>
-				<% if @page_category %>
-				<li><%=link_to @page_category %></li>
-				<% end %>
-				<li class="active"><%=@controller_name %></li>
-			</ul>
+		<div class="page-header" itemscope itemtype="http://schema.org/WebPage">
+			<h2 itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/WebPageElement"><span itemprop="headline"><%=@controller_name %></span></h2>
+			<%= breadcrumbs :semantic=>true, style: :bootstrap %>
 		</div>
 		<% else %>
 		<div>&nbsp;</div>
