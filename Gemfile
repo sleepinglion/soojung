@@ -36,7 +36,7 @@ gem 'mini_magick'
 gem 'impressionist'
 gem 'acts-as-taggable-on'
 gem 'ckeditor'
-gem 'fancybox2-rails', :path=>"vendor/gems/fancybox2-rails"
+gem 'fancybox2-rails'
 gem 'jquery-easing-rails'
 gem 'sitemap_generator'
 gem 'meta-tags'
@@ -58,18 +58,18 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'capistrano', '~> 3.0'
   gem 'capistrano-bundler'
-  gem 'capistrano-rails'  
+  gem 'capistrano-rails'
 end
 
 group :production do
   #gem 'asset_sync'
   gem 'mysql2'
   gem 'dotenv-rails'
-  gem 'recaptcha', :require => 'recaptcha/rails'  
-  
+  gem 'recaptcha', :require => 'recaptcha/rails'
+
   #Redis Cache
   gem 'redis-rails'
-  gem 'redis-rack-cache'  
+  gem 'redis-rack-cache'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
