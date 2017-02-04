@@ -1,6 +1,7 @@
-<section id="sl_gallery_show">
+<% breadcrumb :gallery, @gallery %>
+<div id="sl_gallery_show">
   <% if notice %>
   <%= render :partial => 'layouts/notice',:locals=>{:notice=>notice} %>
   <% end %>
   <%= render 'gallery' %>
-</section>
+</div>

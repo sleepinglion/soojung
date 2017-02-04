@@ -1,4 +1,4 @@
-<section id="sl_blog_index">
+<div id="sl_blog_index">
 	<% if @menu_setting.use_category %>	
 	<ol class="nav nav-tabs">
 		<% unless @blog_categories.empty? %>
@@ -58,4 +58,4 @@
 	<% end %>
 	<%= paginate @blogs %>
 	</div>
-</section>
+</div>

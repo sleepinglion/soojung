@@ -1,0 +1,14 @@
+<div id="sl_tag_cloud">
+<div id="myCanvasContainer">
+ <canvas width="350" height="350" id="myCanvas">
+  <p>Anything in here will be replaced on browsers that support the canvas element</p>
+ </canvas>
+</div>
+<div id="tags">
+	<ul>
+	<% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
+  	<li><%= link_to tag.name, tag_path(:tag => tag.name), :class => css_class %></li>
+	<% end %>
+	</ul>
+</div>
+</div>
