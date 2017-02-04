@@ -56,6 +56,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  
+  # Capistrano  
   gem 'capistrano', '~> 3.0'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
@@ -67,7 +69,7 @@ group :production do
   gem 'dotenv-rails'
   gem 'recaptcha', :require => 'recaptcha/rails'
 
-  #Redis Cache
+  # Redis Cache
   gem 'redis-rails'
   gem 'redis-rack-cache'
 end
