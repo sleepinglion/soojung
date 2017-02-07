@@ -153,6 +153,8 @@ GEM
     nio4r (1.2.1)
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
+    non-stupid-digest-assets (1.0.9)
+      sprockets (>= 2.0)
     orm_adapter (0.5.0)
     puma (3.7.0)
     rack (2.0.1)
@@ -187,7 +189,7 @@ GEM
     rb-fsevent (0.9.8)
     rb-inotify (0.9.8)
       ffi (>= 0.5.0)
-    recaptcha (4.0.1)
+    recaptcha (4.1.0)
       json
     redis (3.3.3)
     redis-actionpack (5.0.1)
@@ -292,6 +294,7 @@ DEPENDENCIES
   meta-tags
   mini_magick
   mysql2
+  non-stupid-digest-assets
   puma (~> 3.0)
   rails (~> 5.0.0, >= 5.0.0.1)
   recaptcha
