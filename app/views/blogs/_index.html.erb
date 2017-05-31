@@ -1,20 +1,20 @@
-<article id="sl_main_blog" class="sl_main_list">
+<article id="sl_main_blog" class="col-xs-12">
   <h3><%=t('activerecord.models.blog') %></h3>
   <% unless @blogs.empty? %>
-  <ul>
-    <% @blogs.each_with_index do |blog,index| %> 
-    <li <% if index==5 %>class="nm"<% else %><% if index==2 %>class="m_nm"<% end %><% end %>>
-    	<%=link_to image_tag(asset_path('ajax-loader.gif'),:width=>100,:height=>100,:alt=>blog.title,:'data-original'=>blog.photo.small_thumb,:class=>'lazy'),blog_path(blog),:title=>blog.title %>
+  <ul class="row">
+    <% @blogs.each_with_index do |blog,index| %>
+    <li class="col-md-2<% if index==5 %> nm<% else %><% if index==2 %> m_nm<% end %><% end %>">
+    	<%=link_to image_tag(asset_path('ajax-loader.gif'),:alt=>blog.title,:'data-original'=>sl_get_thumb(blog.photo.to_s,'medium'),:class=>'lazy img-responsive'),blog_path(blog),:title=>blog.title %>
 			<noscript>
-				<%=link_to image_tag(blog.photo.small_thumb,:width=>100,:height=>100,:alt=>blog.title),blog_path(blog),:title=>blog.title %>
-			</noscript>			    	
+				<%=link_to image_tag(sl_get_thumb(blog.photo.to_s,'medium'),:alt=>blog.title,:class=>'img-responsive'),blog_path(blog),:title=>blog.title %>
+			</noscript>
     </li>
-  	<% end %>    
+  	<% end %>
   </ul>
   <% else %>
   <ul>
     <li><%=t(:no_data) %></li>
   </ul>
   <% end %>
-  <%=link_to t(:link_more),blogs_path,:class=>'more' %>   
-</article>  
+  <%=link_to t(:link_more),blogs_path,:class=>'more' %>
+</article>

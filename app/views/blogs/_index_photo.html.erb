@@ -3,7 +3,11 @@
   <% unless @blog_photos.empty? %>
   <ul>
     <% @blog_photos.each_with_index do |blog,index| %>
-    <li <% if index==5 %>class="nm"<% end %>><%=link_to image_tag(blog.photo.small_thumb,:alt=>blog.title),blog_path(blog,:title=>blog.title %></li>
+    <li <% if index==5 %>class="nm"<% end %>>
+      <%=link_to blog_path(blog,:title=>blog.title) do %>
+      <%=image_tag(blog.photo.small_thumb,:alt=>blog.title) %>
+      <% end %>
+    </li>
     <% end %>
   </ul>
   <% else %>
@@ -11,5 +15,5 @@
     <li><%=t(:no_data) %></li>
   </ul>
   <% end %>
-  <%=link_to t(:link_more),blogs_path,:class=>'more' %>		
-</article>	
+  <%=link_to t(:link_more),blogs_path,:class=>'more' %>
+</article>
