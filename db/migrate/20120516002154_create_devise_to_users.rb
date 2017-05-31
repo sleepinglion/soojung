@@ -3,7 +3,7 @@ class CreateDeviseToUsers < ActiveRecord::Migration
     create_table :users do |t|
       t.references :group, :null=>false
       ## Database authenticatable
-      t.string :email,  :null => false, :limit=>150
+      t.string :email,  :null => false, :limit=>100
       t.string :nickname, :null => false, :limit=>60
       t.string :photo, :null=>false, :limit=>100
       t.string :encrypted_password, :null => false, :limit=>100
@@ -36,6 +36,7 @@ class CreateDeviseToUsers < ActiveRecord::Migration
 
       ## Token authenticatable
       # t.string :authentication_token
+      t.boolean :admin, :null=>false, :default => false
       t.boolean :enable, :null=>false, :default=>true
       t.timestamps :null=>false
     # Uncomment below if timestamps were not included in your original model.

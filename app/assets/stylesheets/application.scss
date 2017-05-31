@@ -6,7 +6,7 @@
 
 @font-face {
     font-family: 'Nanum Gothic';
-    src: local('☺'),url('../fonts/NanumGothic-Regular.eot?#iefix') format('embedded-opentype'),url('../fonts/NanumGothic-Regular.woff') format('woff');
+    src: local('☺'),url(font-path('NanumGothic-Regular.eot?#iefix')) format('embedded-opentype'),url(font-path('NanumGothic-Regular.woff')) format('woff');
 }
 
 /* default */

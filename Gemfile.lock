@@ -151,6 +151,8 @@ GEM
     nio4r (2.1.0)
     nokogiri (1.7.2)
       mini_portile2 (~> 2.1.0)
+    non-stupid-digest-assets (1.0.9)
+      sprockets (>= 2.0)
     orm_adapter (0.5.0)
     puma (3.8.2)
     rack (2.0.3)
@@ -291,6 +293,7 @@ DEPENDENCIES
   meta-tags
   mini_magick
   mysql2
+  non-stupid-digest-assets
   puma (~> 3.0)
   rails (~> 5.0.0, >= 5.0.0.1)
   recaptcha
